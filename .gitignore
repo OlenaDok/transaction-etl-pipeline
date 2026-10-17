@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+data/processed/
+src/test.py
+src/test_load_rates.py
