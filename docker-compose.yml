@@ -3,11 +3,11 @@ services:
     image: postgres:16
     container_name: transactions_postgres
     environment: 
-      POSTGRES_DB: tranaction_db
-      POSTGERS_USER: etl_user
-      POSTGRES_PASSWORD: etl_psw
+      POSTGRES_DB: ${DOCKER_DB_NAME}
+      POSTGERS_USER: ${DOCKER_DB_USER} 
+      POSTGRES_PASSWORD: ${DOCKER_DB_PASSWORD}
     ports: 
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
 
