@@ -5,7 +5,7 @@ from extract import extract_all
 
 def transform(transactions: pd.DataFrame, status_ref: pd.DataFrame, currency_ref: pd.DataFrame) -> pd.DataFrame:
     df = transactions.merge(status_ref, on="status_code", how="left")
-    df = transactions.merge(currency_ref, on="currency_code", how="left")
+    df = df.merge(currency_ref, on="currency_code", how="left")
 
     return df
 
