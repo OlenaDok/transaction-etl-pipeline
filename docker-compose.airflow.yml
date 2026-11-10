@@ -1,0 +1,26 @@
+services:
+  airflow:
+    image: apache/airflow:3.1.0
+    container_name: airflow_standalone
+    command: standalone
+    ports:
+      - "8080:8080"
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      _PIP_ADDITIONAL_REQUIREMENTS: "python-dotenv"
+      DB_HOST: transactions_postgres
+      DB_PORT: "5432"
+      DB_NAME: ${DOCKER_DB_NAME}
+      DB_USER: ${DOCKER_DB_USER}
+      DB_PASSWORD: ${DOCKER_DB_PASSWORD}
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./src:/opt/airflow/project/src
+      - ./sql:/opt/airflow/project/sql
+    networks:
+      - db_network
+
+networks:
+  db_network:
+    external: true
+    name: transaction-etl-pipeline_default
